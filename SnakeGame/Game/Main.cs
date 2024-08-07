@@ -18,5 +18,16 @@ namespace SnakeGame.Game
             this.width = width;
             this.height = height;
         }
+        protected void DrawScore()
+        {
+            string word = $"Score: {points}";
+            for(int i = 0; i < word.Length; i++)
+            {
+                Console.SetCursorPosition(width - 10 + i, 1);
+                Console.Write(' ');
+                Console.SetCursorPosition(width - 10 + i, 1);
+                Console.Write(word[i]);
+            }
+        }
     }
 }

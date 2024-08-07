@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,20 @@ namespace SnakeGame.Game
 
         public void InitFood()
         {
-     
                 RandomFood();
                 DrawFood();
         }
         private void DrawFood()
         {
-            for(int i = 0; i < foodPos.Count / 2; i++)
-            {
-                Console.SetCursorPosition(foodPos[i][0], foodPos[i][1]);
-                Console.Write("#");
-            }
+            Console.SetCursorPosition(foodPos[foodPos.Count - 1][0], foodPos[foodPos.Count - 1][1]);
+            Console.Write("#");
+        }
+        public void ClearFood()
+        {
+            if (foodPos.Count <= 0) return;
+            Console.SetCursorPosition(foodPos[0][0], foodPos[0][1]);
+            Console.Write(" ");
+            foodPos.RemoveAt(0);
         }
         private void RandomFood()
         {
@@ -35,7 +39,7 @@ namespace SnakeGame.Game
             Random number = new Random();
             return number.Next(min,max);
         }
-      
-        
+       
+
     }
 }

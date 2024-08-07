@@ -28,31 +28,40 @@ namespace SnakeGame
             bool game = true;
             while(run)
             {
-                ChangeView(States.Start);
+                _menu[1].Draw();
                while(Console.ReadKey(true).Key != ConsoleKey.Enter){}
                 Console.Clear();
+                Task.Run(() =>
+                {
+                    while (game)
+                    {
+                        _food.InitFood();
+                        Thread.Sleep(1500);
+                    }
+                });
+                Task.Run(() =>
+                {
+                    while (game)
+                    {
+                        Thread.Sleep(3500);
+                        _food.ClearFood();
+                    }
+                });
 
-                while(game) {
+                while (game) {
                     _game.InitSnake();
-                
+                    game = _game.CheckColisionWithTail();
                     Thread.Sleep(33);
                 }
-                
-                
-            }
-            
-
-        }
-        private void ChangeView(States state)
-        {
-            switch (state)
-            {
-                case States.Start:
-                    _menu[1].Draw();
-                    break;
-
+                _game.EndAnimation();
+                Thread.Sleep(200);
+                Console.Clear();
+                _menu[2].Draw();
+                Thread.Sleep(1000);
+                return;
             }
 
         }
+     
     }
 }

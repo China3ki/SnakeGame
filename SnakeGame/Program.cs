@@ -10,12 +10,14 @@ namespace SnakeGame
             Console.SetWindowSize(80, 20);
 
             Snake game = new Snake(80, 20);
-            Menu[] menu = [ new Menu(80,20), new Start(80,20) ];
+            Menu[] menu = [new Menu(80, 20), new Start(80, 20), new End(80,20)];
             Food food = new Food(80, 20);
-            App app = new App(game,food,menu);
+            App app = new App(game, food, menu);
 
             app.Run();
-            
+
+
+
         }
     }
 }
